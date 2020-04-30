@@ -1,2 +1,2 @@
-# fooFightersAPI
-API made with ExpressJS that returns info about the Foo Fighters.
+# Mern Shopping List
+MERN Shopping List based on Traversy's course
