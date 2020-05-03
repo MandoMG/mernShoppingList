@@ -17,7 +17,10 @@ export default function (state = initialState, action) {
             ...state
          };
       case ADD_ITEM:
-         break;
+         return {
+            ...state,
+            items: [action.payload, ...state.items]
+         };
       case DELETE_ITEM:
          return {
             ...state,

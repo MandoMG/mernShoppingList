@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { v4 as uuid } from 'uuid';
 import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../actions/itemActions';
 
@@ -33,18 +32,6 @@ class ShoppingList extends Component<ShoppingListProps> {
       const { items } = this.props.item;
       return (
          <Container>
-            <Button
-               color="dark"
-               style={{ marginBottom: '2rem' }}
-               onClick={() => {
-                  const name = prompt('Enter Item');
-                  if (name) {
-                     this.setState((state: ShoppingListState) => ({
-                        items: [...state.items, { id: uuid(), name }]
-                     }))
-                  }
-               }}
-            >Add Item</Button>
             <ListGroup>
                <TransitionGroup className="shopping-list">
                   {items.map(({ id, name }) => (

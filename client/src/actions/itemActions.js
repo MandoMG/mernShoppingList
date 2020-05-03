@@ -6,10 +6,10 @@ export const getItems = () => {
    }
 }
 
-export const addItem = (id) => {
+export const addItem = (item) => {
    return {
       type: ADD_ITEM,
-      payload: id
+      payload: item
    }
 }
 export const deleteItem = (id) => {
