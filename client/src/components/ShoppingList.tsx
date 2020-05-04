@@ -3,11 +3,7 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../actions/itemActions';
-
-interface ShoppingListItem {
-   id: string,
-   name: string
-}
+import { ShoppingListItem } from '../interfaces/ShoppingListItem';
 
 interface ShoppingListState {
    items: ShoppingListItem[];
@@ -15,7 +11,7 @@ interface ShoppingListState {
 
 interface ShoppingListProps {
    item: ShoppingListState;
-   deleteItem(id: string): any;
+   deleteItem(id?: string): any;
    getItems(): any;
 }
 
@@ -24,7 +20,7 @@ class ShoppingList extends Component<ShoppingListProps> {
       this.props.getItems();
    }
 
-   onDeleteClick = (id: string) => {
+   onDeleteClick = (id?: string) => {
       this.props.deleteItem(id);
    }
 
@@ -34,14 +30,14 @@ class ShoppingList extends Component<ShoppingListProps> {
          <Container>
             <ListGroup>
                <TransitionGroup className="shopping-list">
-                  {items.map(({ id, name }) => (
-                     <CSSTransition key={id} timeout={500} classNames="fade">
+                  {items.map(({ _id, name }) => (
+                     <CSSTransition key={_id} timeout={500} classNames="fade">
                         <ListGroupItem>
                            <Button
                               className="remove-btn"
                               color="danger"
                               size="sm"
-                              onClick={this.onDeleteClick.bind(this, id)}
+                              onClick={this.onDeleteClick.bind(this, _id)}
                            >&times;</Button>
                            {name}
                         </ListGroupItem>

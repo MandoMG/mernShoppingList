@@ -11,12 +11,7 @@ import {
    ModalBody,
    ModalHeader,
 } from 'reactstrap'
-import { v4 as uuid } from 'uuid';
-
-interface ShoppingListItem {
-   id: string,
-   name: string
-}
+import { ShoppingListItem } from '../interfaces/ShoppingListItem';
 
 interface ShoppingListProps {
    addItem(item: ShoppingListItem): any;
@@ -36,7 +31,6 @@ class ItemModal extends Component<ShoppingListProps> {
       e.preventDefault();
 
       const newItem = {
-         id: uuid(),
          name: this.state.name
       }
 
