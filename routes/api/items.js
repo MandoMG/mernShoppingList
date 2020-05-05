@@ -18,10 +18,37 @@ router.get('/', (req, res) => {
 // @access  Public
 router.post('/', (req, res) => {
    const newItem = new Item({
-      name: req.body.name
+      name: req.body.name,
+      checked: req.body.checked
    });
 
    newItem.save().then(item => res.json(item));
+});
+
+// @route   PUT api/items/:id
+// @desc    Update Item
+// @access  Public
+router.put('/:id', (req, res) => {
+   Item.find()
+      .then(items => {
+         const found = items.some(item => item._id == req.params.id);
+
+         if (found) {
+            const updatedItem = req.body;
+            for (let i = 0; i < items.length; i++) {
+               if (items[i]._id == updatedItem._id) {
+                  items[i].checked = updatedItem.checked;
+               }
+            }
+
+            res.json(items);
+         }
+         else {
+            res.json(items);
+         }
+
+      })
+      .catch(err => res.status(404).json({ success: false, error: err }));
 });
 
 // @route   DELETE api/items/:id
