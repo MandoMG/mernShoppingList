@@ -31,7 +31,8 @@ class ItemModal extends Component<ShoppingListProps> {
       e.preventDefault();
 
       const newItem = {
-         name: this.state.name
+         name: this.state.name,
+         checked: false
       }
 
       //Add Item through addItem action
