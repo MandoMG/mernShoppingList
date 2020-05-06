@@ -11,6 +11,9 @@ const ItemSchema = new Schema({
       type: Boolean,
       required: true
    },
+   aisleCode: {
+      type: String
+   },
    date: {
       type: Date,
       default: Date.now

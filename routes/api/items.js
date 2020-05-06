@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
    const newItem = new Item({
       name: req.body.name,
+      aisleCode: req.body.aisleCode,
       checked: req.body.checked
    });
 
@@ -30,6 +31,7 @@ router.post('/', (req, res) => {
 // @access  Public
 router.put('/:id', (req, res) => {
    Item.find()
+      .sort({ date: -1 })
       .then(items => {
          const found = items.some(item => item._id == req.params.id);
 
@@ -38,6 +40,7 @@ router.put('/:id', (req, res) => {
             for (let i = 0; i < items.length; i++) {
                if (items[i]._id == updatedItem._id) {
                   items[i].checked = updatedItem.checked;
+                  items[i].save();
                }
             }
 

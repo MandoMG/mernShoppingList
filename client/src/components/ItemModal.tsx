@@ -20,11 +20,14 @@ interface ShoppingListProps {
 class ItemModal extends Component<ShoppingListProps> {
    state = {
       modal: false,
+      aisleCode: '',
       name: ''
    }
 
    onChange = (e: any) => {
-      this.setState({ [e.target.name]: e.target.value });
+      this.setState({
+         [e.target.name]: e.target.value
+      });
    }
 
    onSubmit = (e: any) => {
@@ -32,6 +35,7 @@ class ItemModal extends Component<ShoppingListProps> {
 
       const newItem = {
          name: this.state.name,
+         aisleCode: this.state.aisleCode,
          checked: false
       }
 
@@ -69,6 +73,14 @@ class ItemModal extends Component<ShoppingListProps> {
                            name="name"
                            id="item"
                            placeholder="Add shopping item"
+                           onChange={this.onChange}
+                        />
+                        <Label for="aisle">Aisle</Label>
+                        <Input
+                           type="text"
+                           name="aisleCode"
+                           id="aisle"
+                           placeholder="Add Aisle"
                            onChange={this.onChange}
                         />
                         <Button

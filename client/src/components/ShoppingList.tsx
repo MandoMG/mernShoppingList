@@ -25,10 +25,11 @@ class ShoppingList extends Component<ShoppingListProps> {
       this.props.deleteItem(id);
    }
 
-   onToggle = (checked: boolean, name: string, id?: string) => {
+   onToggle = (checked: boolean, name: string, aisle: string, id?: string) => {
       let updatedItem: ShoppingListItem = {
          _id: id,
          name: name,
+         aisleCode: aisle,
          checked: !checked
       }
 
@@ -41,16 +42,16 @@ class ShoppingList extends Component<ShoppingListProps> {
          <Container>
             <ListGroup>
                <TransitionGroup className="shopping-list">
-                  {items.map(({ _id, name, checked }) => (
+                  {items.map(({ _id, name, checked, aisleCode }) => (
                      <CSSTransition key={_id} timeout={500} classNames="fade">
-                        <ListGroupItem color={checked ? "success" : "warning"} onClick={this.onToggle.bind(this, checked, name, _id)}>
+                        <ListGroupItem color={checked ? "success" : "secondary"} onClick={this.onToggle.bind(this, checked, name, aisleCode, _id)}>
                            <Button
                               className="remove-btn"
-                              color={checked ? "success" : "warning"}
+                              color="danger"
                               size="sm"
                               onClick={this.onDeleteClick.bind(this, _id)}
                            >&times;</Button>
-                           {name}
+                           {name} - {aisleCode}
                         </ListGroupItem>
                      </CSSTransition>
                   ))}
